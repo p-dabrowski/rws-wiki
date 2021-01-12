@@ -1,6 +1,7 @@
 package Tests;
 
 import Pages.WikiPage;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
@@ -31,7 +32,7 @@ public class goToWikiTest {
     }
 
     @Test
-    public void goToWiki() throws InterruptedException {
+    public void goToWikiTest() throws InterruptedException {
 
         int redirects = 0;
 
@@ -39,17 +40,17 @@ public class goToWikiTest {
         String text = wikiPage.getText();
 
         wikiPage.goToRandomPage();
-
-        while ( ! wikiPage.getText().contains("philosophy") && redirects < MAX_REDIRECTS) {
+        do {
             System.out.println(redirects + ": " + wikiPage.getHeading());
 
             wikiPage.enterFirstLink();
 
             redirects++;
         }
+        while ( ! wikiPage.getText().contains("philosophy") && redirects < MAX_REDIRECTS);
     }
 
-    @Test
+    @AfterEach
     public void tearDown() {
         driver.quit();
     }
