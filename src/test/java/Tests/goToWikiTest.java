@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class goToWikiTest {
 
     WebDriver driver;
-    public static final int MAX_REDIRECTS = 13;
+    public static final int MAX_REDIRECTS = 20;
 
     @BeforeEach
     public void setUp() throws InterruptedException {
@@ -37,17 +37,21 @@ public class goToWikiTest {
         int redirects = 0;
 
         WikiPage wikiPage = new WikiPage(driver);
-        String text = wikiPage.getText();
-
         wikiPage.goToRandomPage();
-        do {
+
+        while ( ! wikiPage.getText().contains("philosophy") && redirects < MAX_REDIRECTS) {
             System.out.println(redirects + ": " + wikiPage.getHeading());
 
             wikiPage.enterFirstLink();
 
             redirects++;
         }
-        while ( ! wikiPage.getText().contains("philosophy") && redirects < MAX_REDIRECTS);
+
+        System.out.println(redirects + ": " + wikiPage.getHeading());
+
+        if ( wikiPage.getText().contains("philosophy") ) {
+            System.out.println("Philosophy term found!");
+        }
     }
 
     @AfterEach
