@@ -1,4 +1,4 @@
-# rws-wiki
+# Wiki iterator
 This junit 'app' iterates through wiki pages until it reaches site with 'philosophy' heading.
 
 # technologies
