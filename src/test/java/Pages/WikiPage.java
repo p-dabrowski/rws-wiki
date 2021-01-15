@@ -27,6 +27,9 @@ public class WikiPage {
     @FindBy(xpath="//*[@id='firstHeading']")
     WebElement heading;
 
+    @FindBy(xpath="//span[@class='mw-headline' and @id='Philosophy']")
+    List<WebElement> headingPhilosophy;
+
     public String getText() {
         return mainPage.getText();
     }
@@ -35,11 +38,15 @@ public class WikiPage {
         goToRandomPage.click();
     }
 
-    public void enterFirstLink() {
+    public void clickOnFirstLink() {
         links.get(0).click();
     }
 
     public String getHeading() {
         return heading.getText();
+    }
+
+    public boolean headingPhilosophyExists() {
+        return headingPhilosophy.size() > 0;
     }
 }
