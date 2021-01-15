@@ -1,11 +1,11 @@
 # Wiki iterator
 This junit 'app' iterates through wiki pages until it reaches site with 'philosophy' heading.
 
-# technologies
-java, junit-jupiter, selenium webdriver, page-object-patter
+## Technologies
+java, junit-jupiter, selenium webdriver, page-object-patter, chrome/firefox driver (linux binaries included)
 
-# build
+## Build
 mvn install
 
-# run
+## Run
 mvn verify
